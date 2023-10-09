@@ -175,6 +175,7 @@ def from_shapely(data, crs=None):
             elif isna(geom):
                 out.append(None)
             else:
+                print(geom, isinstance(geom, BaseGeometry), hasattr(geom, "__geo_interface__"), isna(geom))
                 raise TypeError(
                     "Input must be valid geometry objects: {0}".format(geom)
                 )
