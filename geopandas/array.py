@@ -179,8 +179,8 @@ def from_shapely(data, crs=None):
                 out.append(geom)
             else:
                 print(geom, isinstance(geom, BaseGeometry), hasattr(geom, "__geo_interface__"), isna(geom), hasattr(geom, "geom_type"))
-                print("res:", res)
-                print("res[0]:", res[0])
+                #print("res:", res)
+                #print("res[0]:", res[0])
                 out.append(res)
 
                 #raise TypeError(
