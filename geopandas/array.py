@@ -165,23 +165,28 @@ def from_shapely(data, crs=None):
 
     if not shapely.is_valid_input(arr).all():
         out = []
-
+        DEBUG = False
         for geom in data:
             if isinstance(geom, BaseGeometry):
+                if(DEBUG) print("BaseGeometry")
                 out.append(geom)
             elif hasattr(geom, "__geo_interface__"):
+                if(DEBUG) print("has attr __geo_interface__")
                 geom = shapely.geometry.shape(geom)
                 out.append(geom)
             elif isna(geom):
+                if(DEBUG) print("not a geom")
                 out.append(None)
             elif hasattr(geom, "geom_type"):
-                print('hasattr(geom, "geom_type"):', hasattr(geom, "geom_type"))
+                if(DEBUG) print("has attr geom_type")
                 out.append(geom)
             else:
-                print(geom, isinstance(geom, BaseGeometry), hasattr(geom, "__geo_interface__"), isna(geom), hasattr(geom, "geom_type"))
+                if(DEBUG) print("none of the above")
+                # print(geom, isinstance(geom, BaseGeometry), hasattr(geom, "__geo_interface__"), isna(geom), hasattr(geom, "geom_type"))
                 #print("res:", res)
                 #print("res[0]:", res[0])
                 out.append(geom)
+                # out.append(None)
 
                 #raise TypeError(
                 #    "Input must be valid geometry objects: {0}".format(geom)
