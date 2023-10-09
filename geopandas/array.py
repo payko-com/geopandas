@@ -174,8 +174,11 @@ def from_shapely(data, crs=None):
                 out.append(geom)
             elif isna(geom):
                 out.append(None)
+            elif hasattr(geom, "geom_type"):
+                print('hasattr(geom, "geom_type"):', hasattr(geom, "geom_type"))
+                out.append(geom)
             else:
-                print(geom, isinstance(geom, BaseGeometry), hasattr(geom, "__geo_interface__"), isna(geom))
+                print(geom, isinstance(geom, BaseGeometry), hasattr(geom, "__geo_interface__"), isna(geom), hasattr(geom, "geom_type"))
                 raise TypeError(
                     "Input must be valid geometry objects: {0}".format(geom)
                 )
