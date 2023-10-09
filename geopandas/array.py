@@ -179,9 +179,14 @@ def from_shapely(data, crs=None):
                 out.append(geom)
             else:
                 print(geom, isinstance(geom, BaseGeometry), hasattr(geom, "__geo_interface__"), isna(geom), hasattr(geom, "geom_type"))
-                raise TypeError(
-                    "Input must be valid geometry objects: {0}".format(geom)
-                )
+                res = shapely.from_wkb([geom])
+                print("res:", res)
+                print("res[0]:", res[0])
+                out.append(res[0])
+
+                #raise TypeError(
+                #    "Input must be valid geometry objects: {0}".format(geom)
+                #)
         arr = np.array(out, dtype=object)
 
     return GeometryArray(arr, crs=crs)
